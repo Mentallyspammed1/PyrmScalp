@@ -40,8 +40,10 @@ with app.app_context():
 try:
     bot = TradingBot(config_file="config.json")
     app.bot = bot
+    logger.info(f"{Fore.GREEN}Trading bot initialized successfully{Style.RESET_ALL}")
 except Exception as e:
     logger.error(f"{Fore.RED}Failed to initialize trading bot: {e}{Style.RESET_ALL}")
+    logger.debug(f"Detailed error: {e}", exc_info=True)
     bot = None
 
 if __name__ == "__main__":

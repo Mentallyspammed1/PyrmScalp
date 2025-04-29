@@ -1341,19 +1341,19 @@ class MockBot:
         return True
 
                     # Update the trade record
-                    entry_price = trade.get("entry_price", 0)
-                    exit_price = self.get_current_price()
+                entry_price = trade.get("entry_price", 0)
+                exit_price = self.get_current_price()
 
-                    # Calculate PnL
-                    if position_side == "long":
-                        pnl_pct = (exit_price - entry_price) / entry_price * 100
-                    else:
-                        pnl_pct = (entry_price - exit_price) / entry_price * 100
+                # Calculate PnL
+                if position_side == "long":
+                    pnl_pct = (exit_price - entry_price) / entry_price * 100
+                else:
+                    pnl_pct = (entry_price - exit_price) / entry_price * 100
 
-                    trade["exit_price"] = exit_price
-                    trade["exit_time"] = int(time.time() * 1000)
-                    trade["pnl"] = pnl_pct
-                    trade["status"] = "closed"
+                trade["exit_price"] = exit_price
+                trade["exit_time"] = int(time.time() * 1000)
+                trade["pnl"] = pnl_pct
+                trade["status"] = "closed"
 
                     # Update win/loss counters
                     if pnl_pct > 0:
